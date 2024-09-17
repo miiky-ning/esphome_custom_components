@@ -285,7 +285,7 @@ async def to_code(config):
         cg.add_library(
             name="esp32-camera",
             repository="https://github.com/espressif/esp32-camera.git",
-            version="2.0.10+sha.7aa37d4",
+            version="v2.0.10",
         )
         add_idf_sdkconfig_option("CONFIG_RTCIO_SUPPORT_RTC_GPIO_DESC", True)
         add_idf_sdkconfig_option("CONFIG_SCCB_CLK_FREQ", 20000000)
