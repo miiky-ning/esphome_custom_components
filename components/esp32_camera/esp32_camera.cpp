@@ -85,6 +85,9 @@ void ESP32Camera::dump_config() {
     case FRAMESIZE_XGA:
       ESP_LOGCONFIG(TAG, "  Resolution: 1024x768 (XGA)");
       break;
+    case FRAMESIZE_HD:
+      ESP_LOGCONFIG(TAG, "  Resolution: 1280x720 (HD)");
+      break;
     case FRAMESIZE_SXGA:
       ESP_LOGCONFIG(TAG, "  Resolution: 1280x1024 (SXGA)");
       break;
@@ -274,6 +277,9 @@ void ESP32Camera::set_frame_size(ESP32CameraFrameSize size) {
       break;
     case ESP32_CAMERA_SIZE_1024X768:
       this->config_.frame_size = FRAMESIZE_XGA;
+      break;
+    case ESP32_CAMERA_SIZE_1280X720:
+      this->config_.frame_size = FRAMESIZE_HD;
       break;
     case ESP32_CAMERA_SIZE_1280X1024:
       this->config_.frame_size = FRAMESIZE_SXGA;
