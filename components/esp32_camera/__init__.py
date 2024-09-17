@@ -51,6 +51,8 @@ FRAME_SIZES = {
     "SVGA": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_800X600,
     "1024X768": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1024X768,
     "XGA": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1024X768,
+    "1280X720": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1280X720,
+    "HD": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1280X720,
     "1280X1024": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1280X1024,
     "SXGA": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1280X1024,
     "1600X1200": ESP32CameraFrameSize.ESP32_CAMERA_SIZE_1600X1200,
@@ -156,7 +158,7 @@ CONFIG_SCHEMA = cv.ENTITY_BASE_SCHEMA.extend(
             {
                 cv.Required(CONF_PIN): pins.internal_gpio_input_pin_number,
                 cv.Optional(CONF_FREQUENCY, default="20MHz"): cv.All(
-                    cv.frequency, cv.Range(min=8e6, max=20e6)
+                    cv.frequency, cv.Range(min=8e6, max=40e6)
                 ),
             }
         ),
