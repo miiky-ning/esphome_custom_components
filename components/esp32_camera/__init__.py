@@ -281,10 +281,15 @@ async def to_code(config):
     cg.add_define("USE_ESP32_CAMERA")
 
     if CORE.using_esp_idf:
-        cg.add_library("espressif/esp32-camera", "2.0.9")
+#        cg.add_library("espressif/esp32-camera", "2.0.9")
         add_idf_sdkconfig_option("CONFIG_RTCIO_SUPPORT_RTC_GPIO_DESC", True)
         add_idf_sdkconfig_option("CONFIG_SCCB_CLK_FREQ", 20000000)
-
+        cg.add_library(
+            name="esp32_camera",
+            repository="https://github.com/espressif/esp32-camera.git",
+            version="2.0.12",
+        )
+    
     for conf in config.get(CONF_ON_STREAM_START, []):
         trigger = cg.new_Pvariable(conf[CONF_TRIGGER_ID], var)
         await automation.build_automation(trigger, [], conf)
