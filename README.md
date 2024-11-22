@@ -9,6 +9,6 @@ external_components:
   - source:
       type: git
       url: https://github.com/miiky-ning/custom_components
-    components: [ keypad ]
+    components: [ esp32_camera ]
 ```
 
