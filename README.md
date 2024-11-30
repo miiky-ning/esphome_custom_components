@@ -8,7 +8,7 @@ Example:
 external_components:
   - source:
       type: git
-      url: https://github.com/miiky-ning/custom_components
+      url: https://github.com/miiky-ning/esphome_custom_components
     components: [ esp32_camera ]
 ```
 
