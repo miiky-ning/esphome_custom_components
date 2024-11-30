@@ -19,7 +19,7 @@ from esphome.core import CORE
 from esphome.components.esp32 import add_idf_sdkconfig_option
 from esphome.cpp_helpers import setup_entity
 
-DEPENDENCIES = ["esp32", "esp32s3"]
+DEPENDENCIES = ["esp32"]
 
 AUTO_LOAD = ["psram"]
 
