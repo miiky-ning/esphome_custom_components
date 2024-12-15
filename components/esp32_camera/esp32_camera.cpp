@@ -215,7 +215,8 @@ ESP32Camera::ESP32Camera() {
   this->config_.frame_size = FRAMESIZE_VGA;  // 640x480
   this->config_.jpeg_quality = 10;
   this->config_.fb_count = 1;
-  this->config_.fb_location = CAMERA_FB_IN_DRAM;
+//  this->config_.fb_location = CAMERA_FB_IN_DRAM;
+  this->config_.fb_location = CAMERA_FB_IN_PSRAM;
 
   global_esp32_camera = this;
 }
