@@ -137,7 +137,7 @@ CONF_TEST_PATTERN = "test_pattern"
 # framerates
 CONF_MAX_FRAMERATE = "max_framerate"
 CONF_IDLE_FRAMERATE = "idle_framerate"
-CONF_FRAME_BUFFER_COUNT = "frame_buffer_count"
+CONF_FRAMEBUFFER_COUNT = "frame_buffer_count"
 # stream trigger
 CONF_ON_STREAM_START = "on_stream_start"
 CONF_ON_STREAM_STOP = "on_stream_stop"
@@ -206,6 +206,7 @@ CONFIG_SCHEMA = cv.ENTITY_BASE_SCHEMA.extend(
         cv.Optional(CONF_MAX_FRAMERATE, default="10 fps"): cv.All(
             cv.framerate, cv.Range(min=0, min_included=False, max=60)
         ),
+        cv.Optional(CONF_FRAMEBUFFER_COUNT, default=2): cv.int_range(min=1, max=2),
         cv.Optional(CONF_IDLE_FRAMERATE, default="0.1 fps"): cv.All(
             cv.framerate, cv.Range(min=0, max=1)
         ),
