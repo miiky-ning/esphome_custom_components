@@ -137,7 +137,7 @@ CONF_TEST_PATTERN = "test_pattern"
 # framerates
 CONF_MAX_FRAMERATE = "max_framerate"
 CONF_IDLE_FRAMERATE = "idle_framerate"
-
+CONF_FRAME_BUFFER_COUNT = "frame_buffer_count"
 # stream trigger
 CONF_ON_STREAM_START = "on_stream_start"
 CONF_ON_STREAM_STOP = "on_stream_stop"
