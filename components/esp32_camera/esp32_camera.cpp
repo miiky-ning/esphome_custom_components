@@ -130,7 +130,7 @@ void ESP32Camera::dump_config() {
   sensor_t *s = esp_camera_sensor_get();
   auto st = s->status;
   ESP_LOGCONFIG(TAG, "  JPEG Quality: %u", st.quality);
-  // ESP_LOGCONFIG(TAG, "  Framebuffer Count: %u", conf.fb_count);
+  ESP_LOGCONFIG(TAG, "  Framebuffer Count: %u", conf.fb_count);
   ESP_LOGCONFIG(TAG, "  Contrast: %d", st.contrast);
   ESP_LOGCONFIG(TAG, "  Brightness: %d", st.brightness);
   ESP_LOGCONFIG(TAG, "  Saturation: %d", st.saturation);
