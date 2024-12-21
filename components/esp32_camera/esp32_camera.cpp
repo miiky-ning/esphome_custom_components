@@ -163,7 +163,21 @@ void ESP32Camera::loop() {
     xQueueSend(this->framebuffer_return_queue_, &fb, portMAX_DELAY);
     this->current_image_.reset();
   }
+  static uint32_t last_frame_time = 0;
+  const uint32_t now = millis();
+  if (now - last_frame_time > 100) { // 每100ms获取一帧
+    last_frame_time = now;
 
+    // 获取帧
+    camera_fb_t *fb = esp_camera_fb_get();
+    if (fb) {
+      // 可以在此处理帧数据
+      esp_camera_fb_return(fb); // 释放帧
+    } else {
+      ESP_LOGW(TAG, "Failed to get frame from camera");
+    }
+  }
+  
   // request idle image every idle_update_interval
   const uint32_t now = millis();
   if (this->idle_update_interval_ != 0 && now - this->last_idle_request_ > this->idle_update_interval_) {
