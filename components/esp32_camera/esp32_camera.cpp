@@ -3,7 +3,8 @@
 #include "esp32_camera.h"
 #include "esphome/core/log.h"
 #include "esphome/core/hal.h"
-
+#include "esp_system.h"
+#include "esp_heap_caps.h"
 #include <freertos/task.h>
 
 namespace esphome {
@@ -167,11 +168,9 @@ void ESP32Camera::loop() {
   const uint32_t now = millis();
   if (now - last_frame_time > 100) { // 每100ms获取一帧
     last_frame_time = now;
-
     // 获取帧
     camera_fb_t *fb = esp_camera_fb_get();
     if (fb) {
-      // 可以在此处理帧数据
       esp_camera_fb_return(fb); // 释放帧
     } else {
       ESP_LOGW(TAG, "Failed to get frame from camera");
@@ -228,9 +227,16 @@ ESP32Camera::ESP32Camera() {
   this->config_.pixel_format = PIXFORMAT_JPEG;
   this->config_.frame_size = FRAMESIZE_VGA;  // 640x480
   this->config_.jpeg_quality = 10;
-  this->config_.fb_count = 2;
+//  this->config_.fb_count = 2;
+  if (psramFound()) {
+      this->config_.fb_location = CAMERA_FB_IN_PSRAM;  // 有 PSRAM 时使用 PSRAM
+      this->config_.fb_count = 4;  // 有 PSRAM 时帧缓冲 4
+  } else {
+      this->config_.fb_location = CAMERA_FB_IN_DRAM;   // 没有 PSRAM 时使用 DRAM
+       this->config_.fb_count = 2;  // 没有 PSRAM 时帧缓冲 2
+  }
 //  this->config_.fb_location = CAMERA_FB_IN_DRAM;
-  this->config_.fb_location = CAMERA_FB_IN_PSRAM;
+//  this->config_.fb_location = CAMERA_FB_IN_PSRAM;
 
   global_esp32_camera = this;
 }
