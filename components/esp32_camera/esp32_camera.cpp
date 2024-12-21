@@ -233,7 +233,7 @@ ESP32Camera::ESP32Camera() {
       this->config_.fb_count = 4;  // 有 PSRAM 时帧缓冲 4
   } else {
       this->config_.fb_location = CAMERA_FB_IN_DRAM;   // 没有 PSRAM 时使用 DRAM
-       this->config_.fb_count = 2;  // 没有 PSRAM 时帧缓冲 2
+      this->config_.fb_count = 1;  // 没有 PSRAM 时帧缓冲 2
   }
 //  this->config_.fb_location = CAMERA_FB_IN_DRAM;
 //  this->config_.fb_location = CAMERA_FB_IN_PSRAM;
