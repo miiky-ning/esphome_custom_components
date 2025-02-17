@@ -226,14 +226,13 @@ ESP32Camera::ESP32Camera() {
   this->config_.pixel_format = PIXFORMAT_JPEG;
   this->config_.frame_size = FRAMESIZE_VGA;  // 640x480
   this->config_.jpeg_quality = 10;
-//  this->config_.fb_count = 2;
-  if (psramFound()) {
-      this->config_.fb_location = CAMERA_FB_IN_PSRAM;  // 有 PSRAM 时使用 PSRAM
-      this->config_.fb_count = 4;  // 有 PSRAM 时帧缓冲 4
-  } else {
+//  if (psramFound()) {
+  this->config_.fb_location = CAMERA_FB_IN_PSRAM;  // 有 PSRAM 时使用 PSRAM
+  this->config_.fb_count = 4;  // 有 PSRAM 时帧缓冲 4
+/*  } else {
       this->config_.fb_location = CAMERA_FB_IN_DRAM;   // 没有 PSRAM 时使用 DRAM
       this->config_.fb_count = 1;  // 没有 PSRAM 时帧缓冲 2
-  } 
+  } */ 
 //  this->config_.fb_location = CAMERA_FB_IN_DRAM;
 //  this->config_.fb_location = CAMERA_FB_IN_PSRAM;
 
