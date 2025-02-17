@@ -1,4 +1,5 @@
 #ifdef USE_ESP32
+#include "esp32.h"
 #include "esp32_camera.h"
 #include "esphome/core/log.h"
 #include "esphome/core/hal.h"
