@@ -1,5 +1,5 @@
 #ifdef USE_ESP32
-
+#include "esp32/rom/esp32.h"
 #include "esp32_camera.h"
 #include "esphome/core/log.h"
 #include "esphome/core/hal.h"
@@ -227,13 +227,22 @@ ESP32Camera::ESP32Camera() {
   this->config_.frame_size = FRAMESIZE_VGA;  // 640x480
   this->config_.jpeg_quality = 10;
 //  this->config_.fb_count = 2;
-  if (psramFound()) {
+  if (esp32_spiram_init()) {
+      Serial.println("PSRAM initialized successfully");
+      this->config_.fb_location = CAMERA_FB_IN_PSRAM;  // 有 PSRAM 时使用 PSRAM
+      this->config_.fb_count = 4;  // 有 PSRAM 时帧缓冲 4
+  } else {
+      Serial.println("PSRAM initialization failed");
+      this->config_.fb_location = CAMERA_FB_IN_DRAM;   // 没有 PSRAM 时使用 DRAM
+      this->config_.fb_count = 1;  // 没有 PSRAM 时帧缓冲 2
+  }
+/*  if (psramFound()) {
       this->config_.fb_location = CAMERA_FB_IN_PSRAM;  // 有 PSRAM 时使用 PSRAM
       this->config_.fb_count = 4;  // 有 PSRAM 时帧缓冲 4
   } else {
       this->config_.fb_location = CAMERA_FB_IN_DRAM;   // 没有 PSRAM 时使用 DRAM
       this->config_.fb_count = 1;  // 没有 PSRAM 时帧缓冲 2
-  }
+  } */
 //  this->config_.fb_location = CAMERA_FB_IN_DRAM;
 //  this->config_.fb_location = CAMERA_FB_IN_PSRAM;
 
