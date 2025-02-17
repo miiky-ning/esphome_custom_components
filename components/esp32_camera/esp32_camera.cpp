@@ -166,7 +166,7 @@ void ESP32Camera::loop() {
   }
   static uint32_t last_frame_time = 0;
   const uint32_t now = millis();
-  if (now - last_frame_time > 67) { // 每100ms获取一帧
+  if (now - last_frame_time > 50) { // 每100ms获取一帧
     last_frame_time = now;
     // 获取帧
     camera_fb_t *fb = esp_camera_fb_get();
